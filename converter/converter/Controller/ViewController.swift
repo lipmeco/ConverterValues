@@ -9,10 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
-    let Arr: [String] = ["AUB", "AUC", "AMM", "AHD", "AUB", "GMC", "AHD", "AUB", "GMC"]
-    let Arr2 = ["294.5₽", "294.5₽", "294.5₽", "94.5₽", "294.5₽", "29.5₽", "294.5₽", "294.5₽", "294.5₽"]
+    let Arr = ["AUB", "AUC", "AMM", "AHD", "AUB", "GMC", "AHD", "AUB", "GMC", "AUB", "AUC", "AMM", "AHD", "AUB", "GMC", "AHD", "AUB", "GMC"]
+
+    let Arr2 = ["294.5₽", "11.5₽", "294.5₽", "94.5₽", "294.5₽", "29.5₽", "45.5₽", "294.5₽", "294.5₽", "294.5₽", "11.5₽", "294.5₽", "94.5₽", "294.5₽", "29.5₽", "45.5₽", "294.5₽", "294.5₽"]
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -21,7 +22,6 @@ class ViewController: UIViewController {
         collectionView.register(nibCell, forCellWithReuseIdentifier: "currencyCell")
         collectionView.dataSource = self
         collectionView.delegate = self
-        
     }
 }
 
@@ -29,7 +29,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
 
     // MARK: Count cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Arr.count
+        return min(Arr.count, Arr2.count)
     }
 
     // MARK: Output cells
@@ -41,9 +41,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         else {
             return UICollectionViewCell()
         }
-        cell.layer.cornerRadius = 5
-        cell.currencyName.text = Arr[indexPath.item]
-        cell.currencyCost.text = Arr2[indexPath.item]
+        cell.layer.cornerRadius = 12
+        let labelName = Arr[indexPath.item]
+        let labelCost = Arr2[indexPath.item]
+        let cellData = Currency(currencyName: labelName, currenctCost: labelCost)
+        cell.insertData(data: cellData)
         return cell
     }
 

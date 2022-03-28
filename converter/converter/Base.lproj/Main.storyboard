@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yKp-eE-xIv">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Ob-qB-dko">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,12 +12,12 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="converter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Oqk-jn-QUW">
-                                <rect key="frame" x="16" y="269" width="382" height="573"/>
-                                <color key="backgroundColor" name="background_app"/>
+                                <rect key="frame" x="24" y="176" width="328" height="602"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g5l-Xe-Q2G">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -32,23 +30,36 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ioe-bf-Uf6"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Курс валют" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="K8b-sR-U6I">
-                                <rect key="frame" x="16" y="186" width="125" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" name="cpypto_name"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="24.04.2021" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMg-bS-ufK" customClass="DataField" customModule="converter" customModuleProvider="target">
+                                <rect key="frame" x="24" y="112" width="328" height="44"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="rigthImage" value="calendar"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                        <real key="value" value="-12"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="background_app"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Oqk-jn-QUW" secondAttribute="trailing" constant="16" id="2ri-Mj-6dn"/>
-                            <constraint firstItem="K8b-sR-U6I" firstAttribute="leading" secondItem="Oqk-jn-QUW" secondAttribute="leading" id="EWK-md-mew"/>
-                            <constraint firstItem="Oqk-jn-QUW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="EeU-0X-iFJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Oqk-jn-QUW" secondAttribute="bottom" constant="20" id="KQA-tu-ayF"/>
-                            <constraint firstItem="Oqk-jn-QUW" firstAttribute="top" secondItem="K8b-sR-U6I" secondAttribute="bottom" constant="54" id="L1m-wA-OJK"/>
-                            <constraint firstItem="Oqk-jn-QUW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cHt-9Y-DGM"/>
-                            <constraint firstItem="Oqk-jn-QUW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="129" id="u2H-Xl-xU0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Oqk-jn-QUW" secondAttribute="trailing" constant="23" id="2ri-Mj-6dn"/>
+                            <constraint firstItem="Oqk-jn-QUW" firstAttribute="top" secondItem="FMg-bS-ufK" secondAttribute="bottom" constant="20" id="7jv-5c-ekJ"/>
+                            <constraint firstItem="Oqk-jn-QUW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="EeU-0X-iFJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Oqk-jn-QUW" secondAttribute="bottom" id="KQA-tu-ayF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FMg-bS-ufK" secondAttribute="trailing" constant="23" id="ZFk-ga-c2C"/>
+                            <constraint firstItem="FMg-bS-ufK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="d0N-dH-qin"/>
+                            <constraint firstItem="FMg-bS-ufK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="ds3-Hu-ksN"/>
+                            <constraint firstItem="Oqk-jn-QUW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="88" id="u2H-Xl-xU0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Валюты" id="d1T-j9-1CR"/>
@@ -58,60 +69,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956" y="96.7016491754123"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ggG-z5-cXc">
-            <objects>
-                <viewController id="VJ8-tc-UiO" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="c1j-P4-3ax">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="iCq-Ge-8Sm"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S9n-Ys-YQv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1871" y="97"/>
+            <point key="canvasLocation" x="2840.8000000000002" y="96.059113300492612"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="heB-gd-BJ7">
+        <scene sceneID="qwf-It-y06">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yKp-eE-xIv" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4Ob-qB-dko" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="XJv-xZ-116">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Oxr-eE-U34">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="background_title_left"/>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         </textAttributes>
-                        <navigationBarAppearance key="standardAppearance"/>
-                        <navigationBarAppearance key="compactAppearance"/>
+                        <navigationBarAppearance key="scrollEdgeAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Eee-N6-DMS">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bnX-Ha-p6L"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Arg-Eh-a4d"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lTV-Pm-b4w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7fA-3l-8fZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="16.800000000000001" y="96.7016491754123"/>
+            <point key="canvasLocation" x="1898.4000000000001" y="96.059113300492612"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="FMg-bS-ufK">
+            <size key="intrinsicContentSize" width="152" height="34"/>
+        </designable>
+    </designables>
     <resources>
-        <namedColor name="background_app">
-            <color red="0.95300000905990601" green="0.95300000905990601" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="background_title_left">
-            <color red="0.61599999666213989" green="0.65100002288818359" blue="0.65499997138977051" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="cpypto_name">
-            <color red="0.52899998426437378" green="0.53299999237060547" blue="0.52899998426437378" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="calendar" width="24" height="24"/>
     </resources>
 </document>

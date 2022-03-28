@@ -9,24 +9,14 @@ import UIKit
 
 class CurrencyViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var currencyName: UILabel!
-    @IBOutlet weak var currencyCost: UILabel!
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        //commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        //commonInit()
-    }
-    
-    private func commonInit(){
-        Bundle.main.loadNibNamed("Cell", owner: self, options: nil)
-        addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    @IBOutlet private weak var currencyName: UILabel!
+    @IBOutlet private weak var currencyCost: UILabel!
+
+    private(set) var data: Currency?
+
+    func insertData(data: Currency) {
+        self.data = data
+        currencyName.text = data.currencyName
+        currencyCost.text = data.currenctCost
     }
 }
