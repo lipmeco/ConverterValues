@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Oqk-jn-QUW">
-                                <rect key="frame" x="24" y="176" width="328" height="602"/>
+                                <rect key="frame" x="24" y="176" width="327" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g5l-Xe-Q2G">
                                     <size key="itemSize" width="128" height="128"/>
@@ -30,7 +30,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ioe-bf-Uf6"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="24.04.2021" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMg-bS-ufK" customClass="DataField" customModule="converter" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="24.04.2021" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMg-bS-ufK" customClass="CustomTextField" customModule="converter" customModuleProvider="target">
                                 <rect key="frame" x="24" y="112" width="328" height="44"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
@@ -52,7 +52,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Oqk-jn-QUW" secondAttribute="trailing" constant="23" id="2ri-Mj-6dn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Oqk-jn-QUW" secondAttribute="trailing" constant="24" id="2ri-Mj-6dn"/>
                             <constraint firstItem="Oqk-jn-QUW" firstAttribute="top" secondItem="FMg-bS-ufK" secondAttribute="bottom" constant="20" id="7jv-5c-ekJ"/>
                             <constraint firstItem="Oqk-jn-QUW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="EeU-0X-iFJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Oqk-jn-QUW" secondAttribute="bottom" id="KQA-tu-ayF"/>

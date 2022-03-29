@@ -11,9 +11,32 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    let Arr = ["AUB", "AUC", "AMM", "AHD", "AUB", "GMC", "AHD", "AUB", "GMC", "AUB", "AUC", "AMM", "AHD", "AUB", "GMC", "AHD", "AUB", "GMC"]
+    enum Constants {
+        static let border = 24
+        static let itemsCountInRow = 3
+        static let itemOffest = 7
+        static let minimumLineSpacingForSection = 8.0
+    }
 
-    let Arr2 = ["294.5₽", "11.5₽", "294.5₽", "94.5₽", "294.5₽", "29.5₽", "45.5₽", "294.5₽", "294.5₽", "294.5₽", "11.5₽", "294.5₽", "94.5₽", "294.5₽", "29.5₽", "45.5₽", "294.5₽", "294.5₽"]
+    let data: [Currency] = [.init(currencyName: "AUB", currenctCost: "294.5₽"),
+                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
+                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
+                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
+                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
+                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
+                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
+                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
+                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
+                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
+                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
+                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
+                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
+                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
+                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
+                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
+                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
+                            .init(currencyName: "MVC", currenctCost: "55.5₽"),
+                            .init(currencyName: "MVC", currenctCost: "55.5₽")]
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -29,7 +52,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
 
     // MARK: Count cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return min(Arr.count, Arr2.count)
+        return data.count
     }
 
     // MARK: Output cells
@@ -41,17 +64,20 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         else {
             return UICollectionViewCell()
         }
-        cell.layer.cornerRadius = 12
-        let labelName = Arr[indexPath.item]
-        let labelCost = Arr2[indexPath.item]
-        let cellData = Currency(currencyName: labelName, currenctCost: labelCost)
-        cell.insertData(data: cellData)
+        cell.setCornerRadius(cornerRadius: 12)
+        cell.insertData(data: data[indexPath.item])
         return cell
     }
 
     // MARK: Size cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.itemSize(itemsCountInRow: 3, itemOffset: CGFloat(1))
-
+        let widthView = view.frame.size.width
+        let widthWithoutSpaces = widthView - (CGFloat(Constants.border + Constants.border))
+        let width = widthWithoutSpaces / CGFloat(Constants.itemsCountInRow) - CGFloat(Constants.itemOffest)
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(Constants.minimumLineSpacingForSection)
     }
 }
