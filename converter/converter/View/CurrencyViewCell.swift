@@ -9,16 +9,17 @@ import UIKit
 
 class CurrencyViewCell: UICollectionViewCell {
     
-    @IBOutlet private weak var currencyName: UILabel!
-    @IBOutlet private weak var currencyCost: UILabel!
-
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var costLabel: UILabel!
+    let cellCornerRadius: CGFloat = 12
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 12
+        self.layer.cornerRadius = cellCornerRadius
     }
     
     func insertData(data: Currency) {
-        currencyName.text = data.name
-        currencyCost.text = String(data.cost) + "₽"
+        nameLabel.text = data.name
+        costLabel.text = data.cost.string
     }
 }

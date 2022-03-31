@@ -40,8 +40,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="currencyCost" destination="5RF-ia-aEb" id="Ts5-GV-rzF"/>
-                <outlet property="currencyName" destination="MXk-A0-WqY" id="pZj-qX-f6Q"/>
+                <outlet property="costLabel" destination="5RF-ia-aEb" id="Ts5-GV-rzF"/>
+                <outlet property="nameLabel" destination="MXk-A0-WqY" id="pZj-qX-f6Q"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="200.89285714285714"/>
         </view>

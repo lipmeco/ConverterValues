@@ -14,8 +14,8 @@ class ViewController: UIViewController {
     private enum Constants {
         static let itemsCountInRow: CGFloat = 3
         static let itemOffest: CGFloat = 7
-        static let minimumLineSpacingForSection: CGFloat = 8.0
-        static let identifier = "currencyCell"
+        static let minimumLineSpacingForSection: CGFloat = 8
+        static let cellIdentifier = "currencyCell"
         static let nibName = "Cell"
     }
 
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     
     private func setupCollectionView() {
         let nibCell = UINib(nibName: Constants.nibName, bundle: nil)
-        collectionView.register(nibCell, forCellWithReuseIdentifier: Constants.identifier)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: Constants.cellIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -70,7 +70,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     // MARK: Output cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: Constants.identifier,
+            withReuseIdentifier: Constants.cellIdentifier,
             for: indexPath
         ) as? CurrencyViewCell
         else {
