@@ -11,11 +11,12 @@ class CurrencyViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var currencyName: UILabel!
     @IBOutlet private weak var currencyCost: UILabel!
-        
-    func setCornerRadius(cornerRadius: CGFloat = 12) {
-        self.layer.cornerRadius = cornerRadius
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.cornerRadius = 12
     }
-        
+    
     func insertData(data: Currency) {
         currencyName.text = data.currencyName
         currencyCost.text = data.currenctCost

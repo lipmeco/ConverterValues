@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    enum Constants {
+    private enum Constants {
         static let border = 24
         static let itemsCountInRow = 3
         static let itemOffest = 7
@@ -64,7 +64,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         else {
             return UICollectionViewCell()
         }
-        cell.setCornerRadius(cornerRadius: 12)
         cell.insertData(data: data[indexPath.item])
         return cell
     }
