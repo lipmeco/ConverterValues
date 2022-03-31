@@ -12,9 +12,9 @@ class ViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     private enum Constants {
-        static let itemsCountInRow: CGFloat = 3
-        static let itemOffest: CGFloat = 7
-        static let minimumLineSpacingForSection: CGFloat = 8
+        static let itemsCountInRow = 3.0
+        static let itemOffest = 7.0
+        static let minimumLineSpacingForSection = 8.0
         static let cellIdentifier = "currencyCell"
         static let nibName = "Cell"
     }
