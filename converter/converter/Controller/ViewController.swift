@@ -12,39 +12,51 @@ class ViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     private enum Constants {
-        static let border = 24
-        static let itemsCountInRow = 3
-        static let itemOffest = 7
-        static let minimumLineSpacingForSection = 8.0
+        static let itemsCountInRow: CGFloat = 3
+        static let itemOffest: CGFloat = 7
+        static let minimumLineSpacingForSection: CGFloat = 8.0
+        static let identifier = "currencyCell"
+        static let nibName = "Cell"
     }
 
-    let data: [Currency] = [.init(currencyName: "AUB", currenctCost: "294.5₽"),
-                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
-                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
-                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
-                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
-                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
-                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
-                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
-                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
-                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
-                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
-                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
-                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
-                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
-                            .init(currencyName: "AMM", currenctCost: "94.5₽"),
-                            .init(currencyName: "AUB", currenctCost: "294.5₽"),
-                            .init(currencyName: "AUC", currenctCost: "11.5₽"),
-                            .init(currencyName: "MVC", currenctCost: "55.5₽"),
-                            .init(currencyName: "MVC", currenctCost: "55.5₽")]
+    let data: [Currency] = [.init(name: "AUB", cost: 294.5),
+                            .init(name: "AUC", cost: 11.5),
+                            .init(name: "AMM", cost: 94.5),
+                            .init(name: "AUB", cost: 294.5),
+                            .init(name: "AUC", cost: 11.5),
+                            .init(name: "AMM", cost: 94.5),
+                            .init(name: "AUB", cost: 294.5),
+                            .init(name: "AUC", cost: 11.5),
+                            .init(name: "AMM", cost: 94.5),
+                            .init(name: "AUB", cost: 294.5),
+                            .init(name: "AUC", cost: 11.5),
+                            .init(name: "AMM", cost: 94.5),
+                            .init(name: "AUB", cost: 294.5),
+                            .init(name: "AUC", cost: 11.5),
+                            .init(name: "AMM", cost: 94.5),
+                            .init(name: "AUB", cost: 294.5),
+                            .init(name: "AUC", cost: 11.5),
+                            .init(name: "MVC", cost: 55.5),
+                            .init(name: "MVC", cost: 55.5)]
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nibCell = UINib(nibName: "Cell", bundle: nil)
-        collectionView.register(nibCell, forCellWithReuseIdentifier: "currencyCell")
+        setupCollectionView()
+    }
+    
+    private func setupCollectionView() {
+        let nibCell = UINib(nibName: Constants.nibName, bundle: nil)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: Constants.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    private func insetBetweenViews(parentView: UIView, childView: UICollectionView) -> CGFloat {
+        let viewWidth = parentView.frame.size.width
+        let collectionWidth = childView.frame.size.width
+        let inset = (viewWidth - collectionWidth)
+        return inset
     }
 }
 
@@ -58,7 +70,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     // MARK: Output cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "currencyCell",
+            withReuseIdentifier: Constants.identifier,
             for: indexPath
         ) as? CurrencyViewCell
         else {
@@ -70,13 +82,15 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
 
     // MARK: Size cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let widthView = view.frame.size.width
-        let widthWithoutSpaces = widthView - (CGFloat(Constants.border + Constants.border))
-        let width = widthWithoutSpaces / CGFloat(Constants.itemsCountInRow) - CGFloat(Constants.itemOffest)
+        let viewWidth = view.frame.size.width
+        let collectionViewInset = insetBetweenViews(parentView: view, childView: collectionView)
+        let widthWithoutSpaces = viewWidth - collectionViewInset
+        let width = widthWithoutSpaces / Constants.itemsCountInRow - Constants.itemOffest
         return CGSize(width: width, height: width)
     }
     
+    // MARK: Line size between upper and lower cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(Constants.minimumLineSpacingForSection)
+        return Constants.minimumLineSpacingForSection
     }
 }

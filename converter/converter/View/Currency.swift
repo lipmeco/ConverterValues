@@ -8,6 +8,6 @@
 import Foundation
 
 struct Currency {
-    let currencyName: String
-    let currenctCost: String
+    let name: String
+    let cost: Double
 }

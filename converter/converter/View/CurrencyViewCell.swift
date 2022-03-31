@@ -18,7 +18,7 @@ class CurrencyViewCell: UICollectionViewCell {
     }
     
     func insertData(data: Currency) {
-        currencyName.text = data.currencyName
-        currencyCost.text = data.currenctCost
+        currencyName.text = data.name
+        currencyCost.text = String(data.cost) + "₽"
     }
 }
