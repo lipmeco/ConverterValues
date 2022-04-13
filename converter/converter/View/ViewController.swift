@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  converter
-//
-//  Created by Максим Кузнецов on 15.03.2022.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -18,7 +11,7 @@ class ViewController: UIViewController {
         static let cellIdentifier = "currencyCell"
         static let nibName = "Cell"
     }
-
+    
     let data: [Currency] = [.init(name: "AUB", cost: 294.5),
                             .init(name: "AUC", cost: 11.5),
                             .init(name: "AMM", cost: 94.5),
@@ -44,7 +37,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
     }
-    
+
     private func setupCollectionView() {
         let nibCell = UINib(nibName: Constants.nibName, bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: Constants.cellIdentifier)
