@@ -1,7 +1,7 @@
 import Foundation
 
 struct Currency {
-    var name: String
+    let name: String
     let cost: Double
 }
 
