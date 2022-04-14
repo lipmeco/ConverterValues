@@ -15,6 +15,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет данных" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpe-M6-n7g">
+                                <rect key="frame" x="24" y="361" width="327" height="73"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Oqk-jn-QUW">
                                 <rect key="frame" x="24" y="176" width="327" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -54,12 +60,16 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Oqk-jn-QUW" secondAttribute="trailing" constant="24" id="2ri-Mj-6dn"/>
                             <constraint firstItem="Oqk-jn-QUW" firstAttribute="top" secondItem="FMg-bS-ufK" secondAttribute="bottom" constant="20" id="7jv-5c-ekJ"/>
+                            <constraint firstItem="dpe-M6-n7g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="BzD-s9-vrX"/>
                             <constraint firstItem="Oqk-jn-QUW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="EeU-0X-iFJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Oqk-jn-QUW" secondAttribute="bottom" id="KQA-tu-ayF"/>
+                            <constraint firstItem="dpe-M6-n7g" firstAttribute="top" secondItem="FMg-bS-ufK" secondAttribute="bottom" constant="205" id="MB3-nM-f6W"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dpe-M6-n7g" secondAttribute="trailing" constant="24" id="Mga-zj-qXe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FMg-bS-ufK" secondAttribute="trailing" constant="23" id="ZFk-ga-c2C"/>
                             <constraint firstItem="FMg-bS-ufK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="d0N-dH-qin"/>
                             <constraint firstItem="FMg-bS-ufK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="ds3-Hu-ksN"/>
                             <constraint firstItem="Oqk-jn-QUW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="88" id="u2H-Xl-xU0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dpe-M6-n7g" secondAttribute="bottom" constant="344" id="uFg-hF-9wh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Валюты" id="d1T-j9-1CR"/>

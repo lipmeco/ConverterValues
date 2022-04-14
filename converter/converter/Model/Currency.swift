@@ -1,8 +1,8 @@
 import Foundation
 
 struct Currency {
-    let name: String
-    let cost: Double
+    var name: String
+    var cost: Double
 }
 
 extension Double {

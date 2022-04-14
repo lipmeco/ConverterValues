@@ -6,6 +6,12 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var textField: CustomTextField!
     
+    private let apiManager: ApiProtocol = ApiManager()
+    
+    private lazy var dateFormatter = DateFormatter()
+    
+    private var lastSelectedDate = Date()
+    
     private enum Constants {
         static let itemsCountInRow = 3.0
         static let itemOffest = 7.0
@@ -18,31 +24,14 @@ class ViewController: UIViewController {
         static let actionCancel = "Отмена"
     }
     
-    let data: [Currency] = [.init(name: "AUB", cost: 294.5),
-                            .init(name: "AUC", cost: 11.5),
-                            .init(name: "AMM", cost: 94.5),
-                            .init(name: "AUB", cost: 294.5),
-                            .init(name: "AUC", cost: 11.5),
-                            .init(name: "AMM", cost: 94.5),
-                            .init(name: "AUB", cost: 294.5),
-                            .init(name: "AUC", cost: 11.5),
-                            .init(name: "AMM", cost: 94.5),
-                            .init(name: "AUB", cost: 294.5),
-                            .init(name: "AUC", cost: 11.5),
-                            .init(name: "AMM", cost: 94.5),
-                            .init(name: "AUB", cost: 294.5),
-                            .init(name: "AUC", cost: 11.5),
-                            .init(name: "AMM", cost: 94.5),
-                            .init(name: "AUB", cost: 294.5),
-                            .init(name: "AUC", cost: 11.5),
-                            .init(name: "MVC", cost: 55.5),
-                            .init(name: "MVC", cost: 55.5)]
+    var data: [Valutes] = []
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
         setupTextField()
+        loadCurrencies()
     }
 
     private func setupCollectionView() {
@@ -54,16 +43,37 @@ class ViewController: UIViewController {
     
     private func setupTextField() {
         textField.tapHandled = { [weak self] in
-            self?.showDatePicker { date in
+            self?.showDatePicker(startDate: self?.lastSelectedDate ?? Date()) { date in
+                self?.lastSelectedDate = date
                 self?.textField.setText(date: date)
             }
         }
     }
     
-    private func showDatePicker(dateHandler: @escaping (_ date: Date) -> Void) {
+    private func loadCurrencies() {
+        apiManager.lastCurrencies { [weak self] parsedData in
+            guard let self = self else { return }
+            self.data = parsedData.valute.values.map({ $0 as Valutes })
+            self.collectionView.isHidden = self.data.isEmpty
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            
+            guard let date = parsedData.date.toDate(dateFormatter: self.dateFormatter) else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.textField.setText(date: date)
+            }
+        }
+    }
+    
+    private func showDatePicker(startDate: Date = Date(), dateHandler: @escaping (_ date: Date) -> Void) {
         let datePicker = UIDatePicker(frame: .zero)
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
+        datePicker.date = startDate
         
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         

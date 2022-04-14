@@ -21,8 +21,8 @@ class CurrencyViewCell: UICollectionViewCell {
         self.layer.cornerRadius = Constants.cellCornerRadius
     }
     
-    func insertData(data: Currency) {
-        nameLabel.text = data.name
-        costLabel.text = data.cost.string
+    func insertData<T: MainScreenViewDataProtocol>(data: T) {
+        nameLabel.text = data.charCode
+        costLabel.text = data.value.string
     }
 }
