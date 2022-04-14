@@ -26,6 +26,24 @@ class CustomTextField: UITextField {
         }
     }
     
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        return dateFormatter
+    }()
+    
+    var tapHandled: (() -> Void)?
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        delegate = self
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        tapHandled?()
+    }
+    
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var textRect = super.rightViewRect(forBounds: bounds)
         textRect.origin.x += rightPadding
@@ -38,7 +56,14 @@ class CustomTextField: UITextField {
         return textRect
     }
     
+    func setText(date: Date) {
+        self.text = dateFormatter.string(from: date)
+    }
+    
     func updateView() {
+        rightViewMode = UITextField.ViewMode.never
+        rightView = nil
+        
         if let image = rigthImage {
             rightViewMode = UITextField.ViewMode.always
             let imageView = UIImageView(frame: .zero)
@@ -46,14 +71,18 @@ class CustomTextField: UITextField {
             imageView.image = image
             rightView = imageView
             imageView.tintColor = color
-        } else {
-            rightViewMode = UITextField.ViewMode.never
-            rightView = nil
         }
+        
         let leftSpace = UIView(frame: .zero)
         leftViewMode = UITextField.ViewMode.always
         leftView = leftSpace
         
         attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes:[NSAttributedString.Key.foregroundColor: color])
+    }
+}
+
+extension CustomTextField: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return false
     }
 }

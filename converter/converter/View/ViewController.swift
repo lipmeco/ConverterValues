@@ -4,12 +4,16 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    @IBOutlet private weak var textField: CustomTextField!
+    
     private enum Constants {
         static let itemsCountInRow = 3.0
         static let itemOffest = 7.0
         static let minimumLineSpacingForSection = 8.0
         static let cellIdentifier = "currencyCell"
         static let nibName = "Cell"
+        static let datePickerHeightAnchor = 250.0
+        static let alertControllerHeightAnchor = 360.0
     }
     
     let data: [Currency] = [.init(name: "AUB", cost: 294.5),
@@ -36,6 +40,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        setupTextField()
     }
 
     private func setupCollectionView() {
@@ -43,6 +48,40 @@ class ViewController: UIViewController {
         collectionView.register(nibCell, forCellWithReuseIdentifier: Constants.cellIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    private func setupTextField() {
+        textField.tapHandled = {
+            self.showDatePicker { date in
+                self.textField.setText(date: date)
+            }
+        }
+    }
+    
+    private func showDatePicker(dateHandler: @escaping (_ date: Date) -> Void){
+        let datePicker = UIDatePicker(frame: .zero)
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        
+        let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        
+        alertController.view.addSubview(datePicker)
+        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alertController.addAction(actionCancel)
+        let actionSave = UIAlertAction(title: "Сохранить", style: .default, handler: { _ in
+            dateHandler(datePicker.date)
+        })
+        alertController.addAction(actionSave)
+        
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.widthAnchor.constraint(equalTo: alertController.view.widthAnchor).isActive = true
+        alertController.view.heightAnchor.constraint(
+            equalToConstant: Constants.alertControllerHeightAnchor
+        ).isActive = true
+        datePicker.heightAnchor.constraint(equalToConstant: Constants.datePickerHeightAnchor).isActive = true
+        datePicker.topAnchor.constraint(equalTo: alertController.view.topAnchor).isActive = true
+        
+        present(alertController, animated: true)
     }
     
     private func insetBetweenViews(parentView: UIView, childView: UICollectionView) -> CGFloat {
