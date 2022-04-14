@@ -15,7 +15,12 @@ extension String {
 }
 
 extension Double {
-    var string: String {
+    var rubString: String {
         return String(self) + " ₽"
+    }
+    
+    func rounded(toPlaces places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }
