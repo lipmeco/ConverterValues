@@ -11,9 +11,7 @@ protocol NetworkProtocol {
     var parser: Parsable { get }
     
     func load(from stringUrl: String, completion: @escaping (Data?) -> Void)
-    
     func load<T: Codable>(from stringUrl: String, completion: @escaping (T?) -> Void)
-
 }
 
 extension NetworkProtocol {

@@ -13,3 +13,9 @@ extension String {
         return dateFormatter.date(from: self)
     }
 }
+
+extension Double {
+    var string: String {
+        return String(self) + " ₽"
+    }
+}

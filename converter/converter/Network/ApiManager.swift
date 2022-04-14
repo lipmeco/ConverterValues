@@ -48,6 +48,6 @@ class ApiManager: ApiProtocol {
     }
     
     private func urlForDate(date: Date) -> String {
-        "\(Constants.archivePath)\(dateFormatter.string(from: date))\(Constants.endpointName)"
+        Constants.archivePath + dateFormatter.string(from: date) + Constants.endpointName
     }
 }

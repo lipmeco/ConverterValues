@@ -14,6 +14,7 @@ class CurrencyViewCell: UICollectionViewCell {
     
     private enum Constants {
         static let cellCornerRadius = 12.0
+        static let countAfterDot = 2
     }
     
     override func awakeFromNib() {
@@ -23,6 +24,6 @@ class CurrencyViewCell: UICollectionViewCell {
     
     func insertData<T: MainScreenViewDataProtocol>(data: T) {
         nameLabel.text = data.charCode
-        costLabel.text = data.value.string
+        costLabel.text = data.value.rounded(toPlaces: Constants.countAfterDot).rubString
     }
 }

@@ -7,9 +7,7 @@ class ViewController: UIViewController {
     @IBOutlet private weak var textField: CustomTextField!
     
     private let apiManager: ApiProtocol = ApiManager()
-    
     private lazy var dateFormatter = DateFormatter()
-    
     private var lastSelectedDate = Date()
     
     private enum Constants {
