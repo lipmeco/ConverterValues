@@ -7,12 +7,11 @@
 
 import Foundation
 
-extension String {
-    func toDate(format: String = "yyyy-MM-dd'T'HH:mm:ssZ", dateFormatter: DateFormatter) -> Date? {
-        dateFormatter.dateFormat = format
-        return dateFormatter.date(from: self)
-    }
-}
+//extension String {
+//    func toDate(format: String = "yyyy-MM-dd'T'HH:mm:ssZ", dateFormatter: DateFormatter) -> Date? {
+//        
+//    }
+//}
 
 extension Double {
     var rubString: String {

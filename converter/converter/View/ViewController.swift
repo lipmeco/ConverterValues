@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         static let alertControllerHeightAnchor = 360.0
         static let actionSave = "Сохранить"
         static let actionCancel = "Отмена"
+        static let formatDate = "yyyy-MM-dd'T'HH:mm:ssZ"
     }
     
     var data: [Valutes] = []
@@ -57,7 +58,9 @@ class ViewController: UIViewController {
                 self.collectionView.reloadData()
             }
             
-            guard let date = parsedData.date.toDate(dateFormatter: self.dateFormatter) else {
+            self.dateFormatter.dateFormat = Constants.formatDate
+            guard let date = self.dateFormatter.date(from: parsedData.date)
+            else {
                 return
             }
             
