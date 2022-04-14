@@ -53,9 +53,9 @@ class ViewController: UIViewController {
     }
     
     private func setupTextField() {
-        textField.tapHandled = {
-            self.showDatePicker { date in
-                self.textField.setText(date: date)
+        textField.tapHandled = { [weak self] in
+            self?.showDatePicker { date in
+                self?.textField.setText(date: date)
             }
         }
     }
