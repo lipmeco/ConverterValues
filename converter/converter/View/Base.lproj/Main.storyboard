@@ -30,7 +30,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ioe-bf-Uf6"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="24.04.2021" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMg-bS-ufK" customClass="CustomTextField" customModule="converter" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMg-bS-ufK" customClass="CustomTextField" customModule="converter" customModuleProvider="target">
                                 <rect key="frame" x="24" y="112" width="328" height="44"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
@@ -65,6 +65,7 @@
                     <navigationItem key="navigationItem" title="Валюты" id="d1T-j9-1CR"/>
                     <connections>
                         <outlet property="collectionView" destination="Oqk-jn-QUW" id="Ft4-bc-Apa"/>
+                        <outlet property="textField" destination="FMg-bS-ufK" id="cyB-Hs-wof"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -100,7 +101,7 @@
     </scenes>
     <designables>
         <designable name="FMg-bS-ufK">
-            <size key="intrinsicContentSize" width="152" height="34"/>
+            <size key="intrinsicContentSize" width="63" height="34"/>
         </designable>
     </designables>
     <resources>
