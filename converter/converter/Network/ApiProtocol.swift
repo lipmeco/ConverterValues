@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol ApiProtocol {
+    func lastCurrencies(completion: @escaping (ParsedCurrency) -> Void)
+    func inDateCurrencies(for date: Date, completion: @escaping (ParsedCurrency?) -> Void)
+}

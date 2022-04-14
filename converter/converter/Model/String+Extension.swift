@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+extension String {
+    func toDate(format: String = "yyyy-MM-dd'T'HH:mm:ssZ", dateFormatter: DateFormatter) -> Date? {
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: self)
+    }
+}

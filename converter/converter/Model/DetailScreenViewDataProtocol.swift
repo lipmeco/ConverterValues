@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol DetailScreenViewDataProtocol: MainScreenViewDataProtocol {
+    var name: String { get }
+}

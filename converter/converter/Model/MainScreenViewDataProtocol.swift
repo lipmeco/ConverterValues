@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol MainScreenViewDataProtocol {
+    var charCode: String { get }
+    var value: Double { get }
+}

@@ -42,3 +42,5 @@ struct Valutes: Codable {
         case previous = "Previous"
     }
 }
+
+extension Valutes: MainScreenViewDataProtocol, DetailScreenViewDataProtocol {}
