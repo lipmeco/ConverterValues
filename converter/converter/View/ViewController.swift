@@ -14,6 +14,8 @@ class ViewController: UIViewController {
         static let nibName = "Cell"
         static let datePickerHeightAnchor = 250.0
         static let alertControllerHeightAnchor = 360.0
+        static let actionSave = "Сохранить"
+        static let actionCancel = "Отмена"
     }
     
     let data: [Currency] = [.init(name: "AUB", cost: 294.5),
@@ -58,7 +60,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func showDatePicker(dateHandler: @escaping (_ date: Date) -> Void){
+    private func showDatePicker(dateHandler: @escaping (_ date: Date) -> Void) {
         let datePicker = UIDatePicker(frame: .zero)
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -66,9 +68,9 @@ class ViewController: UIViewController {
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         
         alertController.view.addSubview(datePicker)
-        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
+        let actionCancel = UIAlertAction(title: Constants.actionCancel, style: .cancel)
         alertController.addAction(actionCancel)
-        let actionSave = UIAlertAction(title: "Сохранить", style: .default, handler: { _ in
+        let actionSave = UIAlertAction(title: Constants.actionSave, style: .default, handler: { _ in
             dateHandler(datePicker.date)
         })
         alertController.addAction(actionSave)

@@ -10,6 +10,10 @@ import UIKit
 @IBDesignable
 class CustomTextField: UITextField {
     
+    private enum Constants {
+        static let dateFormat = "dd.MM.yyyy"
+    }
+    
     @IBInspectable var rigthImage: UIImage? {
         didSet {
             updateView()
@@ -28,7 +32,7 @@ class CustomTextField: UITextField {
     
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateFormatter.dateFormat = Constants.dateFormat
         return dateFormatter
     }()
     
