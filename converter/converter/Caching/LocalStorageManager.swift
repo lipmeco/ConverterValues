@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LocalStorageManager: CachProtocol {
+class LocalStorageManager: CacheProtocol {
     func cacheData(for data: Data, key: String) {
         UserDefaults.standard.set(data, forKey: key)
     }

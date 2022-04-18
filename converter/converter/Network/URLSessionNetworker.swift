@@ -10,14 +10,14 @@ import Foundation
 class URLSessionNetworker: NetworkProtocol {
     init(
         parser: Parsable = JSONDecoder(),
-        cacher: CachProtocol = LocalStorageManager()
+        cacher: CacheProtocol = LocalStorageManager()
     ) {
         self.parser = parser
         self.cacher = cacher
     }
 
     let parser: Parsable
-    let cacher: CachProtocol
+    let cacher: CacheProtocol
     
     func load(from stringUrl: String, completion: @escaping (Data?) -> Void) {
         guard let url = URL(string: stringUrl) else {
