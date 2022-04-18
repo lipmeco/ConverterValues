@@ -12,9 +12,10 @@ class ApiManager: ApiProtocol {
     private let networkManager: NetworkProtocol
     
     private enum Constants {
-        static let lastCurrencies = "https://www.cbr-xml-daily.ru/daily_json.js"
-        static let archivePath = "https://www.cbr-xml-daily.ru/archive/"
+        static let host = "https://www.cbr-xml-daily.ru"
         static let endpointName = "/daily_json.js"
+        static let lastCurrencies = host + endpointName
+        static let archivePath = host + "/archive/"
         static let dateFormat = "YYYY/MM/dd"
     }
     
@@ -48,6 +49,11 @@ class ApiManager: ApiProtocol {
     }
     
     private func urlForDate(date: Date) -> String {
-        Constants.archivePath + dateFormatter.string(from: date) + Constants.endpointName
+        guard let url = URL(string: Constants.archivePath)?
+                .appendingPathComponent(dateFormatter.string(from: date))
+                .appendingPathComponent(Constants.endpointName) else { return "" }
+        
+        let stringUrl = url.absoluteString
+        return stringUrl
     }
 }

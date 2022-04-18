@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     private enum Constants {
         static let itemsCountInRow = 3.0
-        static let itemOffest = 7.0
+        static let itemOffset = 7.0
         static let minimumLineSpacingForSection = 8.0
         static let cellIdentifier = "currencyCell"
         static let nibName = "Cell"
@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         static let actionSave = "Сохранить"
         static let actionCancel = "Отмена"
         static let formatDate = "yyyy-MM-dd'T'HH:mm:ssZ"
+        static let detailScreenIdentifier = "CurrencyDetailView"
     }
     
     var data: [Valutes] = []
@@ -42,9 +43,11 @@ class ViewController: UIViewController {
     
     private func setupTextField() {
         textField.tapHandled = { [weak self] in
-            self?.showDatePicker(startDate: self?.lastSelectedDate ?? Date()) { date in
-                self?.lastSelectedDate = date
-                self?.textField.setText(date: date)
+            guard let self = self else { return }
+            self.showDatePicker(startDate: self.lastSelectedDate) { date in
+                self.lastSelectedDate = date
+                self.textField.setText(date: date)
+                self.showCurrencies(for: date)
             }
         }
     }
@@ -53,17 +56,43 @@ class ViewController: UIViewController {
         apiManager.lastCurrencies { [weak self] parsedData in
             guard let self = self else { return }
             self.data = parsedData.valute.values.map({ $0 as Valutes })
-            self.collectionView.isHidden = self.data.isEmpty
+            
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.collectionView.isHidden = self.data.isEmpty
             }
             
             self.dateFormatter.dateFormat = Constants.formatDate
             guard let date = self.dateFormatter.date(from: parsedData.date)
+                else { return }
+            
+            DispatchQueue.main.async {
+                self.textField.setText(date: date)
+            }
+        }
+    }
+    
+    private func showCurrencies(for date: Date) {
+        apiManager.inDateCurrencies(for: date) { [weak self] parsedData in
+            guard let self = self else { return }
+            
+            self.data.removeAll()
+            if let parsedData = parsedData {
+                self.data = parsedData.valute.values.map({ $0 as Valutes })
+            }
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.collectionView.isHidden = self.data.isEmpty
+            }
+
+            self.dateFormatter.dateFormat = Constants.formatDate
+            guard
+                    let date = self.dateFormatter.date(from: parsedData?.date ?? "")
             else {
                 return
             }
-            
+
             DispatchQueue.main.async {
                 self.textField.setText(date: date)
             }
@@ -74,6 +103,7 @@ class ViewController: UIViewController {
         let datePicker = UIDatePicker(frame: .zero)
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
+        datePicker.maximumDate = Date()
         datePicker.date = startDate
         
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
@@ -130,12 +160,19 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         let viewWidth = view.frame.size.width
         let collectionViewInset = insetBetweenViews(parentView: view, childView: collectionView)
         let widthWithoutSpaces = viewWidth - collectionViewInset
-        let width = widthWithoutSpaces / Constants.itemsCountInRow - Constants.itemOffest
+        let width = widthWithoutSpaces / Constants.itemsCountInRow - Constants.itemOffset
         return CGSize(width: width, height: width)
     }
     
     // MARK: Line size between upper and lower cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return Constants.minimumLineSpacingForSection
+    }
+    
+    //MARK: Selected cell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: Constants.detailScreenIdentifier) as! CurrencyDetailView
+        vc.data = data[indexPath.item]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
