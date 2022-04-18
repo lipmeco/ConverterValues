@@ -13,8 +13,8 @@ class ApiManager: ApiProtocol {
     
     private enum Constants {
         static let host = "https://www.cbr-xml-daily.ru"
-        static let endpointName = "/daily_json.js"
-        static let archive = "/archive/"
+        static let endpointName = "daily_json.js"
+        static let archive = "archive"
         static let dateFormat = "YYYY/MM/dd"
     }
     
