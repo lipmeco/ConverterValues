@@ -16,8 +16,8 @@ class URLSessionNetworker: NetworkProtocol {
         self.cacher = cacher
     }
 
-    let parser: Parsable
-    let cacher: CacheProtocol
+    internal let parser: Parsable
+    private let cacher: CacheProtocol
     
     func load(from stringUrl: String, completion: @escaping (Data?) -> Void) {
         guard let url = URL(string: stringUrl) else {
@@ -28,7 +28,7 @@ class URLSessionNetworker: NetworkProtocol {
             completion(cache)
         } else {
             URLSession.shared.dataTask(with: url) { data, _, _ in
-                self.cacher.cacheData(for: data ?? Data(), key: stringUrl)
+                self.cacher.cacheData(data: data ?? Data(), key: stringUrl)
                 completion(data)
             }.resume()
         }

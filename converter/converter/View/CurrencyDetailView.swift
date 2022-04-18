@@ -6,7 +6,7 @@ class CurrencyDetailView: UIViewController {
     @IBOutlet private weak var valueLabel: UILabel!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var charCodeLabel: UILabel!
-    @IBOutlet weak var rublesTextField: CustomTextFieldDetailScreen!
+    @IBOutlet private weak var rublesTextField: CustomTextFieldDetailScreen!
     
     var data: DetailScreenViewDataProtocol?
     
@@ -34,9 +34,13 @@ class CurrencyDetailView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bottomView.layer.cornerRadius = Constants.bottomViewCornerRadius
+        setCornerRadiusBottomView()
         setNavItem()
         setInfoCurrencies()
+    }
+    
+    private func setCornerRadiusBottomView() {
+        bottomView.layer.cornerRadius = Constants.bottomViewCornerRadius
     }
     
     private func setNavItem() {
@@ -50,9 +54,9 @@ class CurrencyDetailView: UIViewController {
     }
     
     private func setInfoCurrencies() {
-        self.valueLabel.text = data?.value.rounded(toPlaces: Constants.countAfterDot).rubString
-        self.nameLabel.text = data?.name
-        self.charCodeLabel.text = data?.charCode
+        valueLabel.text = data?.value.rounded(toPlaces: Constants.countAfterDot).rubString
+        nameLabel.text = data?.name
+        charCodeLabel.text = data?.charCode
     }
 }
 
