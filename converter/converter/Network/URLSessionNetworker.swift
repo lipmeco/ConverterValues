@@ -8,19 +8,29 @@
 import Foundation
 
 class URLSessionNetworker: NetworkProtocol {
-    init(parser: Parsable = JSONDecoder()) {
+    init(
+        parser: Parsable = JSONDecoder(),
+        cacher: CacheProtocol = LocalStorageManager()
+    ) {
         self.parser = parser
+        self.cacher = cacher
     }
-    
-    let parser: Parsable
+
+    internal let parser: Parsable
+    private let cacher: CacheProtocol
     
     func load(from stringUrl: String, completion: @escaping (Data?) -> Void) {
         guard let url = URL(string: stringUrl) else {
             completion(nil)
             return
         }
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            completion(data)
-        }.resume()
+        if let cache = cacher.getData(key: stringUrl) {
+            completion(cache)
+        } else {
+            URLSession.shared.dataTask(with: url) { data, _, _ in
+                self.cacher.cacheData(data: data ?? Data(), key: stringUrl)
+                completion(data)
+            }.resume()
+        }
     }
 }
