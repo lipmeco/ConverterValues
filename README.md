@@ -1,3 +1,3 @@
-# Maksim Kuznetsov Internship
+# Converter values from CB RF
 
-Maksim Kuznetsov Internship
+Cache downoloads information.
